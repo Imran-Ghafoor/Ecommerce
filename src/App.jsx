@@ -1,8 +1,7 @@
+import Routes from "./router/Routes";
 
 const App = () => {
-  return (
-    <h1>Ecommerce APP</h1>
-  )
-}
+  return <Routes />;
+};
 
-export default App
+export default App;
