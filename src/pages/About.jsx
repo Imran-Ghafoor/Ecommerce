@@ -4,7 +4,11 @@ const About = () => {
   const data = {
     name: "Imran Ecommerce Store",
   };
-  return <HeroSection myData={data} />;
+  return (
+    <>
+      <HeroSection myData={data} />
+    </>
+  );
 };
 
 export default About;
