@@ -1,5 +1,10 @@
+import HeroSection from "../components/UI/HeroSection";
+
 const About = () => {
-  return <h1>About</h1>;
+  const data = {
+    name: "Imran Ecommerce Store",
+  };
+  return <HeroSection myData={data} />;
 };
 
 export default About;
