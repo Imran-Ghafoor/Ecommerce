@@ -6,6 +6,7 @@ import Products from "../pages/Products";
 import Cart from "../pages/Cart";
 import SingleProduct from "../pages/SingleProduct";
 import ErrorPage from "../pages/ErrorPage";
+import Layout from "../components/Layout/Layout";
 const Routes = () => {
   const router = createBrowserRouter([
     {
@@ -14,31 +15,31 @@ const Routes = () => {
       children: [
         {
           path: "/",
-          Element: <Home />,
+          element: <Home />,
         },
         {
           path: "/about",
-          Element: <About />,
+          element: <About />,
         },
         {
           path: "/contact",
-          Element: <Contact />,
+          element: <Contact />,
         },
         {
           path: "/products",
-          Element: <Products />,
+          element: <Products />,
         },
         {
           path: "/cart",
-          Element: <Cart />,
+          element: <Cart />,
         },
         {
           path: "/singleproduct/:id",
-          Element: <SingleProduct />,
+          element: <SingleProduct />,
         },
         {
           path: "*",
-          Element: <ErrorPage />,
+          element: <ErrorPage />,
         },
       ],
     },
