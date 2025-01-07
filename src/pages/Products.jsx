@@ -2,12 +2,8 @@ import styled from "styled-components";
 import FilterSection from "../components/UI/FilterSection";
 import ProductList from "../components/UI/ProductList";
 import Sort from "../components/UI/Sort";
-import { useFilterContext } from "../context/FilterContext";
 
 const Products = () => {
-  const { filter_products } = useFilterContext();
-  console.log(filter_products);
-
   return (
     <Wrapper>
       {/* first column */}
