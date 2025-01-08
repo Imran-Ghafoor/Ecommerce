@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { useFilterContext } from "../../context/FilterContext";
+import { FaCheck } from "react-icons/fa";
 
 const FilterSection = () => {
   const {
-    filters: { text, category },
+    filters: { text, category, color },
     all_products,
     updateFilterValue,
   } = useFilterContext();
@@ -15,7 +16,7 @@ const FilterSection = () => {
     });
 
     if (property === "colors") {
-      newVal = newVal.flat(); // to set arr sequence & remove dublicate
+      newVal = newVal.flat(); // to get union of array data& remove dublicate
     }
     return (newVal = ["all", ...new Set(newVal)]);
   };
@@ -78,6 +79,46 @@ const FilterSection = () => {
             })}
           </select>
         </form>
+      </div>
+
+      {/* color filter */}
+      <div className="filter-colors colors">
+        <h3>Colors</h3>
+
+        <div className="filter-color-style">
+          {colorsData.map((curColor, index) => {
+            // with all filter
+            if (curColor === "all") {
+              return (
+                <button
+                  key={index}
+                  value={curColor}
+                  name="color"
+                  type="button"
+                  className="color-all--style"
+                  onClick={updateFilterValue}
+                >
+                  all
+                </button>
+              );
+            }
+
+            // normal color filter
+            return (
+              <button
+                key={index}
+                value={curColor}
+                name="color"
+                type="button"
+                style={{ backgroundColor: curColor }}
+                className={color === curColor ? "btnStyle active" : "btnStyle"}
+                onClick={updateFilterValue}
+              >
+                {color === curColor ? <FaCheck className="checkStyle" /> : null}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </Wrapper>
   );
