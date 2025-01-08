@@ -3,9 +3,29 @@ import { useFilterContext } from "../../context/FilterContext";
 
 const FilterSection = () => {
   const {
-    filters: { text },
+    filters: { text, category },
+    all_products,
     updateFilterValue,
   } = useFilterContext();
+
+  // To Get The Unique Data Of Each property
+  const getUniqueData = (data, property) => {
+    let newVal = data.map((curElem) => {
+      return curElem[property];
+    });
+
+    if (property === "colors") {
+      newVal = newVal.flat(); // to set arr sequence & remove dublicate
+    }
+    return (newVal = ["all", ...new Set(newVal)]);
+  };
+
+  // get unique data
+  const OnlyCategoryData = getUniqueData(all_products, "category");
+  const companyData = getUniqueData(all_products, "company");
+  const colorsData = getUniqueData(all_products, "colors");
+  console.log(colorsData);
+
   return (
     <Wrapper>
       <div className="filter-search">
@@ -17,6 +37,46 @@ const FilterSection = () => {
             placeholder="search"
             onChange={updateFilterValue}
           />
+        </form>
+      </div>
+      <div className="filter-category">
+        <h3>Category</h3>
+        <div>
+          {OnlyCategoryData.map((curElem, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                name="category"
+                value={curElem}
+                onClick={updateFilterValue}
+              >
+                {curElem}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* company filter data */}
+      <div className="filter-company">
+        <h3>Company</h3>
+
+        <form action="#">
+          <select
+            name="company"
+            id="company"
+            className="filter-company--select"
+            onClick={updateFilterValue}
+          >
+            {companyData.map((curElem, index) => {
+              return (
+                <option key={index} value={curElem} name="company">
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
         </form>
       </div>
     </Wrapper>
