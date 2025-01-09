@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { useFilterContext } from "../../context/FilterContext";
 import { FaCheck } from "react-icons/fa";
+import FormatPrice from "../../helpers/FormatPrice";
+import { Button } from "../UI/styles/Button";
 
 const FilterSection = () => {
   const {
-    filters: { text, category, color },
+    filters: { text, category, color, price, maxPrice, minPrice },
     all_products,
     updateFilterValue,
+    clearFilters,
   } = useFilterContext();
 
   // To Get The Unique Data Of Each property
@@ -25,7 +28,6 @@ const FilterSection = () => {
   const OnlyCategoryData = getUniqueData(all_products, "category");
   const companyData = getUniqueData(all_products, "company");
   const colorsData = getUniqueData(all_products, "colors");
-  console.log(colorsData);
 
   return (
     <Wrapper>
@@ -119,6 +121,29 @@ const FilterSection = () => {
             );
           })}
         </div>
+      </div>
+
+      {/* proceRange filter */}
+      <div className="filter_price">
+        <h3>Price</h3>
+        <p>
+          <FormatPrice price={price} />
+        </p>
+        <input
+          type="range"
+          name="price"
+          min={minPrice}
+          max={maxPrice}
+          value={price}
+          onChange={updateFilterValue}
+        />
+      </div>
+
+      {/* clear all-filters */}
+      <div className="filter-clear">
+        <Button className="btn" onClick={clearFilters}>
+          Clear-Filter
+        </Button>
       </div>
     </Wrapper>
   );
