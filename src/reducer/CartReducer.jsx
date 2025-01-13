@@ -21,9 +21,18 @@ const CartReducer = (state, action) => {
     let updatedItem = state.cart.filter(
       (curItem) => curItem.id !== action.payload
     );
+
     return {
       ...state,
       cart: updatedItem,
+    };
+  }
+
+  //   to clear & empty Cart
+  if (action.type === "CLEAR_CART") {
+    return {
+      ...state,
+      cart: [],
     };
   }
 
