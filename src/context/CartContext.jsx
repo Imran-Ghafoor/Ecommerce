@@ -16,7 +16,7 @@ const initialState = {
   //   cart: [],
   cart: getLocalCartData(),
   total_item: "",
-  total_amount: "",
+  total_price: "",
   shipping_fee: 5000,
 };
 
@@ -46,8 +46,11 @@ const CartProvider = ({ children }) => {
     dispatch({ type: "CLEAR_CART" });
   };
 
-  // add data in localstorage
   useEffect(() => {
+    //to add cart total-item
+    dispatch({ type: "CART_TOTAL_ITEM" });
+
+    // add data in localstorage
     localStorage.setItem("imranCart", JSON.stringify(state.cart));
   }, [state.cart]);
 
