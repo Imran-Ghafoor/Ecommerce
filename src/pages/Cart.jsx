@@ -3,9 +3,10 @@ import { useCartContext } from "../context/CartContext";
 import CartItem from "../components/UI/CartItem";
 import { NavLink } from "react-router-dom";
 import { Button } from "../components/UI/styles/Button";
+import FormatPrice from "../helpers/FormatPrice";
 
 const Cart = () => {
-  const { cart, clearCart } = useCartContext();
+  const { cart, clearCart, total_price, shipping_fee } = useCartContext();
 
   if (cart.length === 0) {
     return (
@@ -40,6 +41,31 @@ const Cart = () => {
           <Button className="btn btn-clear" onClick={clearCart}>
             Clear cart
           </Button>
+        </div>
+
+        {/* order total-amount */}
+        <div className="order-total--amount">
+          <div className="order-total--subdata">
+            <div>
+              <p>subtotal:</p>
+              <p>
+                <FormatPrice price={total_price} />
+              </p>
+            </div>
+            <div>
+              <p>shipping fee:</p>
+              <p>
+                <FormatPrice price={shipping_fee} />
+              </p>
+            </div>
+            <hr />
+            <div>
+              <p>order total:</p>
+              <p>
+                <FormatPrice price={shipping_fee + total_price} />
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </Wrapper>
@@ -215,11 +241,11 @@ const Wrapper = styled.section`
       gap: 2.2rem;
     }
 
-    .order-total--amount {
-      width: 100%;
-      text-transform: capitalize;
-      justify-content: flex-start;
-      align-items: flex-start;
+    // .order-total--amount {
+    //   width: 100%;
+    //   text-transform: capitalize;
+    //   justify-content: flex-start;
+    //   align-items: flex-start;
 
       .order-total--subdata {
         width: 100%;
