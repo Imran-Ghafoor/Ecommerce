@@ -11,7 +11,10 @@ const NavBar = () => {
   const [menuIcon, setMenuIcon] = useState();
 
   const { total_item } = useCartContext();
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  {
+    /* authenticate with auth0 */
+  }
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   return (
     <Nav>
@@ -54,7 +57,11 @@ const NavBar = () => {
             </NavLink>
           </li>
 
+          {/* user profile-Info auth0 */}
+          {isAuthenticated && <p>{user.name}</p>}
+
           {/* add user-login&Logout */}
+          {/* --------- */}
           {isAuthenticated ? (
             <li>
               <Button
@@ -70,6 +77,7 @@ const NavBar = () => {
               <Button onClick={() => loginWithRedirect()}>Log In</Button>;
             </li>
           )}
+          {/* --------- */}
 
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link">
