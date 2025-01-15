@@ -6,11 +6,14 @@ import { FilterContextProvider } from "./context/FilterContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+const domain = import.meta.env.VITE_AUTH_DOMAIN;
+const clientid = import.meta.env.VITE_CLIENT_ID;
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Auth0Provider
-      domain="dev-2vzushsqde476sgb.us.auth0.com"
-      clientId="1FoYf1NngY7maTdJFqIgkjcPN5RLuYVu"
+      domain={domain}
+      clientId={clientid}
       authorizationParams={{
         redirectUri: window.location.origin,
       }}
