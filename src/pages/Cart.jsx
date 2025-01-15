@@ -22,7 +22,7 @@ const Cart = () => {
     <Wrapper>
       <div className="container">
 
-        {/* authenticate with auth0 */}
+        {/* authenticate with auth0 show user Info */}
         {isAuthenticated && (
           <div className="cart-user--profile">
             <img src={user.profile} alt={user.name} />
